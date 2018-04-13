@@ -19,6 +19,12 @@ public interface Service {
 
     ResponseData saveDeck(CommonDeck commonDeck);
 
+    ResponseData saveUserDeck(UserDeck userDeck);
+
+    ResponseData deleteDeck(String id);
+
+    ResponseData deleteUserDeck(String id);
+
     ResponseData deckToUser(String id, String token);
 
     ResponseData findAvailableLevels(String id);

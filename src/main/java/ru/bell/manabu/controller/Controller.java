@@ -8,6 +8,7 @@ import ru.bell.manabu.View.ResponseData;
 import ru.bell.manabu.View.ReviewView;
 import ru.bell.manabu.domain.CommonDeck;
 import ru.bell.manabu.domain.Review;
+import ru.bell.manabu.domain.UserDeck;
 import ru.bell.manabu.service.Service;
 import ru.bell.manabu.service.impl.ServiceImpl;
 
@@ -39,6 +40,17 @@ public class Controller {
         return service.saveDeck(commonDeck);
     }
 
+    @GetMapping(value = "/deck/delete/{id}")
+    public ResponseData deleteDeck(@PathVariable String id){
+        logger.info("DeleteDeck(), id = " + id);
+        return service.deleteDeck(id);
+    }
+
+    @GetMapping(value = "/user_deck/delete/{id}")
+    public ResponseData deleteUserDeck(@PathVariable String id){
+        logger.info("DeleteUserDeck(), id = " + id);
+        return service.deleteUserDeck(id);
+    }
 
     @GetMapping(value = "/deck_to_user/{id}/{token}")
     public ResponseData deckToUser(@PathVariable String id, @PathVariable String token){
@@ -46,15 +58,21 @@ public class Controller {
         return service.deckToUser(id, token);
     }
 
-    @GetMapping(value = "/get_deck_user/{id}")
-    public ResponseData getDeckUser(@PathVariable String id){
-        logger.info("GetDeckUser(),id =  " + id);
+    @GetMapping(value = "/user_deck/get/{id}")
+    public ResponseData getUserDeck(@PathVariable String id){
+        logger.info("GetUserDeck(),id =  " + id);
         return service.findUserDeck(id);
     }
 
-    @GetMapping(value = "/get_decks_user/{token}")
-    public ResponseData getDecksUser(@PathVariable String token){
-        logger.info("GetDecksUser(), token = " + token);
+    @PostMapping(value = "/user_deck/update")
+    public ResponseData updateUserDeck(@RequestBody UserDeck userDeck){
+        logger.info("UpdateUserDeck, userDeck" + userDeck.toString());
+        return service.saveUserDeck(userDeck);
+    }
+
+    @GetMapping(value = "/user_decks/get/{token}")
+    public ResponseData getUserDecks(@PathVariable String token){
+        logger.info("GetUserDecks(), token = " + token);
         return service.findUserDecks(token);
     }
 

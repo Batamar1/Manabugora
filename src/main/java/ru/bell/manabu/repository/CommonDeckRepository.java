@@ -14,4 +14,6 @@ public interface CommonDeckRepository extends MongoRepository<CommonDeck, String
     //CommonDeck findByLevelName(String name);
 
     CommonDeck findBy_id(String id);
+
+    void deleteBy_id(String id);
 }

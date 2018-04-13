@@ -16,4 +16,5 @@ public interface UserDeckRepository extends MongoRepository<UserDeck, String>{
 
     List<UserDeck> findAllByToken(String token);
 
+    void deleteBy_id(String id);
 }

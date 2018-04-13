@@ -52,6 +52,24 @@ public class ServiceImpl implements Service {
         return ResponseData.ok;
     }
 
+    @Override
+    public ResponseData saveUserDeck(UserDeck userDeck) {
+        userDeckRepository.save(userDeck);
+        return ResponseData.ok;
+    }
+
+    @Override
+    public ResponseData deleteDeck(String id) {
+        deckRepository.deleteBy_id(id);
+        return ResponseData.ok;
+    }
+
+    @Override
+    public ResponseData deleteUserDeck(String id) {
+        userDeckRepository.deleteBy_id(id);
+        return ResponseData.ok;
+    }
+
     /*
     public ResponseData saveUser(String token){
         if(!userRepository.existsById(token)) userRepository.save(new User(token));
