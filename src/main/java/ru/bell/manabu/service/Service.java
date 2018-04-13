@@ -27,5 +27,7 @@ public interface Service {
 
     ResponseData saveReview(Review review);
 
+    ResponseData findReviewForOneDeck(String idDeck, String token);
+
     ResponseData stepUpReview(String id, int step);
 }

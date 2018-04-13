@@ -47,6 +47,7 @@ public class ServiceImpl implements Service {
 
     @Override
     public ResponseData saveDeck(CommonDeck commonDeck){
+
         if(!userDeckRepository.existsById(commonDeck.get_id())) deckRepository.save(commonDeck);
         return ResponseData.ok;
     }
@@ -89,6 +90,11 @@ public class ServiceImpl implements Service {
         review.setTime(new Date().getTime() + TWENTYMIN);
         reviewRepository.save(review);
         return ResponseData.ok;
+    }
+
+    @Override
+    public ResponseData findReviewForOneDeck(String idDeck, String token) {
+        return new ResponseData<>(reviewRepository.findByIdDeckAndToken(idDeck,token));
     }
 
     @Override

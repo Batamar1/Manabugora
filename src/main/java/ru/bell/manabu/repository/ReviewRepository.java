@@ -11,4 +11,6 @@ public interface ReviewRepository extends MongoRepository<Review,String>{
     List<Review> findAllByTokenAndTimeLessThan(String token, Long time);
 
     Review findBy_id(String id);
+
+    Review findByIdDeckAndToken(String id, String token);
 }
