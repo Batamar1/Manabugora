@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public interface Service {
     ResponseData findCommonDecks();
 
-    ResponseData findUserDecks(String token);
+    ResponseData findUserDecks(String userId);
 
     ResponseData findCommonDeck(String id);
 
@@ -25,15 +25,15 @@ public interface Service {
 
     ResponseData deleteUserDeck(String id);
 
-    ResponseData deckToUser(String id, String token);
+    ResponseData deckToUser(String id, String userId);
 
     ResponseData findAvailableLevels(String id);
 
-    ResponseData findAvailableReviews(String token);
+    ResponseData findAvailableReviews(String userId);
 
     ResponseData saveReview(Review review);
 
-    ResponseData findReviewForOneDeck(String idDeck, String token);
+    ResponseData findReviewForOneDeck(String idDeck, String userId);
 
     ResponseData stepUpReview(String id, int step);
 }

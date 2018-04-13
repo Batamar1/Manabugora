@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Review {
     private String _id;
 
-    private String token;
+    private String userId;
 
     private String idDeck;
 

@@ -33,7 +33,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public ResponseData findUserDecks(String token){return new ResponseData<>(userDeckRepository.findAllShortByToken(token));}
+    public ResponseData findUserDecks(String userId){return new ResponseData<>(userDeckRepository.findAllShortByuserId(userId));}
 
     @Override
     public ResponseData findCommonDeck(String id){
@@ -71,29 +71,29 @@ public class ServiceImpl implements Service {
     }
 
     /*
-    public ResponseData saveUser(String token){
-        if(!userRepository.existsById(token)) userRepository.save(new User(token));
+    public ResponseData saveUser(String userId){
+        if(!userRepository.existsById(userId)) userRepository.save(new User(userId));
         return ResponseData.ok;
     }
     */
 
     @Override
-    public ResponseData deckToUser(String id, String token){
-        userDeckRepository.save(commonDeckToUserDeck(deckRepository.findBy_id(id), token));
+    public ResponseData deckToUser(String id, String userId){
+        userDeckRepository.save(commonDeckToUserDeck(deckRepository.findBy_id(id), userId));
         return ResponseData.ok;
     }
 
     @Override
     public ResponseData findAvailableLevels(String id){
         UserDeck userDeck = userDeckRepository.findBy_id(id);
-        System.out.println(userDeck.getToken());
+        System.out.println(userDeck.getUserId());
         return new ResponseData<>(userDeck.getLevels().stream().filter((level) -> level.isAvailable()).collect(Collectors.toList()));
     }
 
     @Override
-    public ResponseData findAvailableReviews(String token) {
-        List<Review> reviews = reviewRepository.findAllByTokenAndTimeLessThan(token, new Date().getTime());
-        List<UserDeck> decks = userDeckRepository.findAllByToken(token);
+    public ResponseData findAvailableReviews(String userId) {
+        List<Review> reviews = reviewRepository.findAllByUserIdAndTimeLessThan(userId, new Date().getTime());
+        List<UserDeck> decks = userDeckRepository.findAllByuserId(userId);
         List<ReviewView> reviewViewList = new ArrayList<>();
         reviews.forEach((review)-> decks.stream().filter((deck) -> deck.get_id().equals(review.getIdDeck())).findFirst().get().
                 getLevels().stream().filter((level)-> level.getId().equals(review.getIdLevel())).findFirst().get().
@@ -111,8 +111,8 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public ResponseData findReviewForOneDeck(String idDeck, String token) {
-        return new ResponseData<>(reviewRepository.findByIdDeckAndToken(idDeck,token));
+    public ResponseData findReviewForOneDeck(String idDeck, String userId) {
+        return new ResponseData<>(reviewRepository.findByIdDeckAndUserId(idDeck,userId));
     }
 
     @Override
@@ -140,11 +140,11 @@ public class ServiceImpl implements Service {
         return ResponseData.ok;
     }
 
-    private UserDeck commonDeckToUserDeck(CommonDeck deck, String token){
+    private UserDeck commonDeckToUserDeck(CommonDeck deck, String userId){
         UserDeck userDeck = new UserDeck();
         userDeck.setLevels(deck.getLevels());
         userDeck.setName(deck.getName());
-        userDeck.setToken(token);
+        userDeck.setUserId(userId);
         return userDeck;
     }
     /*

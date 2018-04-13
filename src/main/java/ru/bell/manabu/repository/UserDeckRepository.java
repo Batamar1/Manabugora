@@ -12,9 +12,9 @@ public interface UserDeckRepository extends MongoRepository<UserDeck, String>{
     //UserDeck findBy_idAndLevelAvailable(String _id, boolean levelAvaiable);
     UserDeck findBy_id(String _id);
 
-    List<ShortDeck> findAllShortByToken(String token);
+    List<ShortDeck> findAllShortByuserId(String userId);
 
-    List<UserDeck> findAllByToken(String token);
+    List<UserDeck> findAllByuserId(String userId);
 
     void deleteBy_id(String id);
 }

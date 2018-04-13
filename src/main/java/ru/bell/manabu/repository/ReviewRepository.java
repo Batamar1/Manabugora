@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends MongoRepository<Review,String>{
-    List<Review> findAllByTokenAndTimeLessThan(String token, Long time);
+    List<Review> findAllByUserIdAndTimeLessThan(String UserId, Long time);
 
     Review findBy_id(String id);
 
-    Review findByIdDeckAndToken(String id, String token);
+    Review findByIdDeckAndUserId(String id, String UserId);
 }

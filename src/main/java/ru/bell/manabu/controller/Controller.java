@@ -52,10 +52,10 @@ public class Controller {
         return service.deleteUserDeck(id);
     }
 
-    @GetMapping(value = "/deck_to_user/{id}/{token}")
-    public ResponseData deckToUser(@PathVariable String id, @PathVariable String token){
-        logger.info("DeckToUser(), id = " + id + ", token = " + token);
-        return service.deckToUser(id, token);
+    @GetMapping(value = "/deck_to_user/{id}/{userId}")
+    public ResponseData deckToUser(@PathVariable String id, @PathVariable String userId){
+        logger.info("DeckToUser(), id = " + id + ", userId = " + userId);
+        return service.deckToUser(id, userId);
     }
 
     @GetMapping(value = "/user_deck/get/{id}")
@@ -70,10 +70,10 @@ public class Controller {
         return service.saveUserDeck(userDeck);
     }
 
-    @GetMapping(value = "/user_decks/get/{token}")
-    public ResponseData getUserDecks(@PathVariable String token){
-        logger.info("GetUserDecks(), token = " + token);
-        return service.findUserDecks(token);
+    @GetMapping(value = "/user_decks/get/{userId}")
+    public ResponseData getUserDecks(@PathVariable String userId){
+        logger.info("GetUserDecks(), userId = " + userId);
+        return service.findUserDecks(userId);
     }
 
     @GetMapping(value = "/deck/{id}/lessons")
@@ -88,16 +88,16 @@ public class Controller {
         return service.saveReview(review);
     }
 
-    @GetMapping(value = "deck/{idDeck}/reviews/{token}")
-    public ResponseData getReviewForOneDeck(@PathVariable String idDeck, @PathVariable String token){
-        logger.info("GetReviewForOneDeck(), idDeck = " + idDeck + ", token = " + token);
-        return service.findReviewForOneDeck(idDeck, token);
+    @GetMapping(value = "deck/{idDeck}/reviews/{userId}")
+    public ResponseData getReviewForOneDeck(@PathVariable String idDeck, @PathVariable String userId){
+        logger.info("GetReviewForOneDeck(), idDeck = " + idDeck + ", userId = " + userId);
+        return service.findReviewForOneDeck(idDeck, userId);
     }
 
-    @GetMapping(value = "/get_available_reviews/{token}")
-    public ResponseData getReviews(@PathVariable String token){
-        logger.info("GetReview, token = " + token);
-        return service.findAvailableReviews(token);
+    @GetMapping(value = "/get_available_reviews/{userId}")
+    public ResponseData getReviews(@PathVariable String userId){
+        logger.info("GetReview, userId = " + userId);
+        return service.findAvailableReviews(userId);
     }
 
     @GetMapping(value = "/review/step_up/{id}/{step}")

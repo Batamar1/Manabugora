@@ -19,6 +19,8 @@ public abstract class Deck{
     @Field("name")
     private String name;
 
+    private String userId;
+
     @NotEmpty
     private List<Level> levels;
 
